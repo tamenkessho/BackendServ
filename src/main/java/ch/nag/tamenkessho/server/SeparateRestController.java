@@ -53,11 +53,11 @@ public class SeparateRestController {
         System.out.println(token);
         if(token.equalsIgnoreCase("armane")){
             resultingString = NagWorker.getGson( new NagWorker[]{
-                    new NagWorker("Alex", "Software Engineering", 24),
-                    new NagWorker("Christophe", "Software Engineering", 35),
+                    new NagWorker("Alex", "Softwareentwicklung", 24),
+                    new NagWorker("Christophe", "Softwareentwicklung", 35),
                     new NagWorker("Artur", "Software Engineering Intern", 17),
-                    new NagWorker("Sandrine", "Software Engineering", 25),
-                    new NagWorker("Christoph", "Software Engineering", 27),
+                    new NagWorker("Sandrine", "Softwareentwicklung", 25),
+                    new NagWorker("Christoph", "Softwareentwicklung", 27),
                     new NagWorker("Martin", "Client Team", 44)});
             System.out.println(resultingString);
         }else{
