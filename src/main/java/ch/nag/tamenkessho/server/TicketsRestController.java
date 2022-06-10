@@ -26,13 +26,13 @@ public class TicketsRestController {
                     "I really need help with my new email address right now. New NAG email doesnt work properly.",
                     true,
                     52,
-                    "March 17, 2005"
+                    "16:22:48 / March 17, 2005"
             ),
             new Ticket(
                     "Require NgRx support",
                     "HEYYY SOUFIAN! GUESS WHAT? YESSS I AGAIN CANT DEAL WITH NGRX. Heeelp me, mate!",
                     false,
                     38,
-                    "May 19, 2022"
+                    "13:41:23 / May 19, 2022"
             )};
 }
