@@ -1,4 +1,4 @@
-package ch.nag.tamenkessho.data;
+package ch.nag.tamenkessho.server.data;
 
 import com.google.gson.Gson;
 

@@ -1,6 +1,6 @@
 package ch.nag.tamenkessho.server;
 
-import ch.nag.tamenkessho.data.NagWorker;
+import ch.nag.tamenkessho.server.data.NagWorker;
 import org.springframework.web.bind.annotation.*;
 
 import java.nio.charset.Charset;
