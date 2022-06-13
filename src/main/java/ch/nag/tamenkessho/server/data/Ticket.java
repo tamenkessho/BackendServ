@@ -1,5 +1,6 @@
 package ch.nag.tamenkessho.server.data;
 
+import ch.nag.tamenkessho.server.data.ticketsDatabase.TicketSqlObject;
 import com.google.gson.Gson;
 
 public class Ticket {

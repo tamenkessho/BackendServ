@@ -1,4 +1,4 @@
-package ch.nag.tamenkessho.server.data;
+package ch.nag.tamenkessho.server.data.ticketsDatabase;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

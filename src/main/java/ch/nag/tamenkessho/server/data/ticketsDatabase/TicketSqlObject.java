@@ -1,4 +1,6 @@
-package ch.nag.tamenkessho.server.data;
+package ch.nag.tamenkessho.server.data.ticketsDatabase;
+
+import ch.nag.tamenkessho.server.data.Ticket;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

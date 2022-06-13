@@ -1,8 +1,8 @@
-package ch.nag.tamenkessho.server;
+package ch.nag.tamenkessho.server.restcontrollers;
 
 import ch.nag.tamenkessho.server.data.Ticket;
-import ch.nag.tamenkessho.server.data.TicketSqlObject;
-import ch.nag.tamenkessho.server.data.TicketsRepository;
+import ch.nag.tamenkessho.server.data.ticketsDatabase.TicketSqlObject;
+import ch.nag.tamenkessho.server.data.ticketsDatabase.TicketsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,11 +19,11 @@ public class TicketsRestController {
 
     @GetMapping("/nag/storage/tickets")
     private String ticketsRequest() {
-        System.out.println("Request received");
+
         ticketsList.clear();
-        for (TicketSqlObject object : repo.findAll()) {
+        for (TicketSqlObject object : repo.findAll())
             ticketsList.add(new Ticket(object));
-        }
+
         jsonString = Ticket.getGson(ticketsList.toArray(new Ticket[0]));
         System.out.println(jsonString);
         return jsonString;
@@ -33,14 +33,13 @@ public class TicketsRestController {
     private void setTickets(
             @RequestBody
             String jsonUpdatedTickets) {
-        repo.deleteAll();
         var ticketArray = Ticket.getArray(jsonUpdatedTickets);
         sqlList.clear();
-        for (Ticket ticket : ticketArray) {
+
+        for (Ticket ticket : ticketArray)
             sqlList.add(new TicketSqlObject(ticket));
-        }
+
+        repo.deleteAll();
         repo.saveAll(sqlList);
     }
-
-    private Ticket[] tickets = new Ticket[0];
 }

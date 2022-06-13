@@ -1,4 +1,4 @@
-package ch.nag.tamenkessho.server;
+package ch.nag.tamenkessho.server.restcontrollers;
 
 import ch.nag.tamenkessho.server.data.NagWorker;
 import org.springframework.web.bind.annotation.*;
@@ -19,11 +19,13 @@ public class SeparateRestController {
             String requestBody) {
         System.out.println(requestBody);
         String result;
-        if(requestBody.contains("artur.semenenko@nag.ch")&&requestBody.contains("o2m4utv=9")){
+        if (requestBody.contains("artur.semenenko@nag.ch") && requestBody.contains("o2m4utv=9")) {
             result = "ojwgi10yt349cm1=0ry9n249vnb94wu04w[nb";
-        } else {result = "wrongo";}
+        } else {
+            result = "wrongo";
+        }
         System.out.println(result);
-        String jsonResult = "{\"token\": \""+result+"\"}";
+        String jsonResult = "{\"token\": \"" + result + "\"}";
 
         System.out.println(jsonResult);
         return jsonResult;
@@ -35,7 +37,7 @@ public class SeparateRestController {
             String requestBody) {
         String result = "null :))";
 
-        if(requestBody.contains("artur.semenenko@nag.ch")&&requestBody.contains("o2m4utv=9")){
+        if (requestBody.contains("artur.semenenko@nag.ch") && requestBody.contains("o2m4utv=9")) {
             result = "{\"code\":\"Success\"}";
             System.out.println(result);
         } else {
@@ -48,11 +50,11 @@ public class SeparateRestController {
     @GetMapping("/nag/data")
     public String workersRequest(
             @RequestParam("token")
-            String token){
+            String token) {
         String resultingString;
         System.out.println(token);
-        if(token.equalsIgnoreCase("armane")){
-            resultingString = NagWorker.getGson( new NagWorker[]{
+        if (token.equalsIgnoreCase("armane")) {
+            resultingString = NagWorker.getGson(new NagWorker[]{
                     new NagWorker("Alex", "Softwareentwicklung", 24),
                     new NagWorker("Christophe", "Softwareentwicklung", 35),
                     new NagWorker("Artur", "Software Engineering Intern", 17),
@@ -60,10 +62,10 @@ public class SeparateRestController {
                     new NagWorker("Christoph", "Softwareentwicklung", 27),
                     new NagWorker("Martin", "Client Team", 44)});
             System.out.println(resultingString);
-        }else{
-            resultingString = NagWorker.getGson( new NagWorker[]{
+        } else {
+            resultingString = NagWorker.getGson(new NagWorker[]{
                     new NagWorker("Wrongo", "I wont give you data)", 401)});
-        System.out.println(resultingString);
+            System.out.println(resultingString);
         }
         return resultingString;
     }
