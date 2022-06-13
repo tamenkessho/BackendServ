@@ -1,38 +1,46 @@
 package ch.nag.tamenkessho.server;
 
 import ch.nag.tamenkessho.server.data.Ticket;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import ch.nag.tamenkessho.server.data.TicketSqlObject;
+import ch.nag.tamenkessho.server.data.TicketsRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 
 @RestController
 @CrossOrigin
 public class TicketsRestController {
     String jsonString = "";
+    @Autowired
+    TicketsRepository repo;
+    ArrayList<Ticket> ticketsList = new ArrayList<>();
+    ArrayList<TicketSqlObject> sqlList = new ArrayList<>();
 
     @GetMapping("/nag/storage/tickets")
     private String ticketsRequest() {
         System.out.println("Request received");
-
-        jsonString = Ticket.getGson(tickets);
+        ticketsList.clear();
+        for (TicketSqlObject object : repo.findAll()) {
+            ticketsList.add(new Ticket(object));
+        }
+        jsonString = Ticket.getGson(ticketsList.toArray(new Ticket[0]));
         System.out.println(jsonString);
         return jsonString;
     }
 
+    @PutMapping("/nag/storage/upload/tickets")
+    private void setTickets(
+            @RequestBody
+            String jsonUpdatedTickets) {
+        repo.deleteAll();
+        var ticketArray = Ticket.getArray(jsonUpdatedTickets);
+        sqlList.clear();
+        for (Ticket ticket : ticketArray) {
+            sqlList.add(new TicketSqlObject(ticket));
+        }
+        repo.saveAll(sqlList);
+    }
 
-    private Ticket[] tickets = new Ticket[]{
-            new Ticket(
-                    "I require help with email",
-                    "I really need help with my new email address right now. New NAG email doesnt work properly.",
-                    true,
-                    52,
-                    "16:22:48 / March 17, 2005"
-            ),
-            new Ticket(
-                    "Require NgRx support",
-                    "HEYYY SOUFIAN! GUESS WHAT? YESSS I AGAIN CANT DEAL WITH NGRX. Heeelp me, mate!",
-                    false,
-                    38,
-                    "13:41:23 / May 19, 2022"
-            )};
+    private Ticket[] tickets = new Ticket[0];
 }
