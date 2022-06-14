@@ -3,6 +3,9 @@ package ch.nag.tamenkessho.server.data;
 import ch.nag.tamenkessho.server.data.ticketsDatabase.TicketSqlObject;
 import com.google.gson.Gson;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 public class Ticket {
 
     static public String getGson(Ticket[] tickets) {
@@ -12,10 +15,14 @@ public class Ticket {
     static public Ticket[] getArray(String jsonRealization) {
         return new Gson().fromJson(jsonRealization, Ticket[].class);
     }
-
-    public String title, description, dateTime;
-    public boolean status;
+    @Id
+    @GeneratedValue
     public int ID;
+    public String title, description;
+    public boolean status;
+    public String dateTime, group;
+
+
 
     public Ticket(TicketSqlObject ticket){
         this.ID = ticket.getID();
@@ -23,12 +30,14 @@ public class Ticket {
         this.description = ticket.getDescription();
         this.dateTime = ticket.getDate_time();
         this.status = ticket.getStatus();
+        this.group = ticket.getGroupe();
     }
-    public Ticket(String title, String description, boolean status, int ID, String date) {
+    public Ticket(String title, String description, boolean status, int ID, String date, String group) {
         this.title = title;
         this.description = description;
         this.status = status;
         this.dateTime = date;
         this.ID = ID;
+        this.group = group;
     }
 }

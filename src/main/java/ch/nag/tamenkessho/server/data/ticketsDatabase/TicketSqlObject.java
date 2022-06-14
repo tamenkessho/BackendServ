@@ -9,7 +9,7 @@ import javax.persistence.Id;
 public class TicketSqlObject {
     @Id
     public int ID;
-    public String title, description, date_time;
+    public String date_time, description, groupe, title;
     public boolean status;
 
     public TicketSqlObject() {
@@ -21,23 +21,21 @@ public class TicketSqlObject {
         this.description = ticket.description;
         this.date_time = ticket.dateTime;
         this.status = ticket.status;
+        this.groupe = ticket.group;
     }
 
-    public TicketSqlObject(Integer ID, String title, String description, String date_time, boolean status) {
+    public TicketSqlObject(Integer ID, String title, String description, String date_time, boolean status, String groupe) {
         this.ID = ID;
         this.title = title;
         this.description = description;
         this.date_time = date_time;
         this.status = status;
+        this.groupe = groupe;
         return;
     }
 
     public Integer getID() {
         return ID;
-    }
-
-    public void setID(Integer ID) {
-        this.ID = ID;
     }
 
     public String getTitle() {
@@ -68,8 +66,16 @@ public class TicketSqlObject {
         return status;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
+    public String getGroupe() {
+        return groupe;
+    }
+
+    public void setGroupe(String group) {
+        this.groupe = group;
     }
 
     @Override
@@ -77,9 +83,10 @@ public class TicketSqlObject {
         return "Ticket{" +
                 "id=" + ID +
                 ", title='" + title + '\'' +
-        ", description='" + description + '\'' +
-                ", status='"+status+"'" +
-                ", dateTime='"+date_time+"'"+
-        '}';
+                ", description='" + description + '\'' +
+                ", status='" + status + "'" +
+                ", dateTime='" + date_time + "'" +
+                ", group='" + groupe + "'" +
+                '}';
     }
 }
