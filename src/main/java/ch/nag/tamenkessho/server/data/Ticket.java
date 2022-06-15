@@ -18,9 +18,11 @@ public class Ticket {
     @Id
     @GeneratedValue
     public int ID;
-    public String title, description;
-    public boolean status;
-    public String dateTime, group;
+    public final String title;
+    public final String description;
+    public final boolean status;
+    public final String dateTime;
+    public final String group;
 
 
 

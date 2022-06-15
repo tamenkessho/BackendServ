@@ -4,14 +4,15 @@ import ch.nag.tamenkessho.server.data.NagWorker;
 import org.springframework.web.bind.annotation.*;
 
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 @RestController
 @CrossOrigin
 public class SeparateRestController {
 
     private static final String key0 = "FECOI()*&<MNCXZPKL";
-    private static final Charset charset = Charset.forName("UTF-8");
-    private static byte[] keyBytes = key0.getBytes(charset);
+    private static final Charset charset = StandardCharsets.UTF_8;
+    private static final byte[] keyBytes = key0.getBytes(charset);
 
     @PostMapping("/authorize")
     public String loginRequest(
@@ -35,7 +36,7 @@ public class SeparateRestController {
     public String dishesRequest(
             @RequestBody()
             String requestBody) {
-        String result = "null :))";
+        String result;
 
         if (requestBody.contains("artur.semenenko@nag.ch") && requestBody.contains("o2m4utv=9")) {
             result = "{\"code\":\"Success\"}";

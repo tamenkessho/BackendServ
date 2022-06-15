@@ -12,10 +12,14 @@ import java.util.ArrayList;
 @CrossOrigin
 public class TicketsRestController {
     String jsonString = "";
-    @Autowired
+    final
     TicketsRepository repo;
-    ArrayList<Ticket> ticketsList = new ArrayList<>();
-    ArrayList<TicketSqlObject> sqlList = new ArrayList<>();
+    final ArrayList<Ticket> ticketsList = new ArrayList<>();
+    final ArrayList<TicketSqlObject> sqlList = new ArrayList<>();
+
+    public TicketsRestController(TicketsRepository repo) {
+        this.repo = repo;
+    }
 
     @GetMapping("/nag/storage/tickets")
     private String ticketsRequest() {

@@ -31,7 +31,6 @@ public class TicketSqlObject {
         this.date_time = date_time;
         this.status = status;
         this.groupe = groupe;
-        return;
     }
 
     public Integer getID() {
